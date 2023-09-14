@@ -1,21 +1,14 @@
-import {
-  List,
-  ListItem,
-  ContactCard,
-  ButtonDelete,
-} from './ContactList.styled';
+// import { useSelector } from 'react-redux';
+import { List, ListItem } from './ContactList.styled';
+import { ContactItem } from 'components/ContactItem/ContactItem';
 
 export const ContactList = ({ items, onDelete }) => {
+  // const value = useSelector(state => state.some.value);
   return (
     <List>
-      {items.map(({ id, name, number }) => (
-        <ListItem key={id}>
-          <ContactCard>
-            {name}:&nbsp;<span>{number}</span>
-            <ButtonDelete type="button" onClick={() => onDelete(id)}>
-              Delete
-            </ButtonDelete>
-          </ContactCard>
+      {items.map(item => (
+        <ListItem key={item.id}>
+          <ContactItem item={item} onDelete={onDelete} />
         </ListItem>
       ))}
     </List>

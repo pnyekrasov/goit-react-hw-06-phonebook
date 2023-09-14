@@ -1,10 +1,10 @@
 import { ContactForm } from './ContactForm/ContactForm';
-import { ContactsBook } from './App.staled';
+import { ContactsBook, ButtonReset } from './App.staled';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import { useState } from 'react';
 import { useLocalStorage } from './hooks/useLocalStorage';
-import { ButtonReset } from './ContactList/ContactList.styled';
+import {} from './ContactList/ContactList.styled';
 
 const startContacts = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -38,13 +38,13 @@ export const App = () => {
     ) && setContacts(startContacts);
   };
 
-  const getVisibleContact = () => {
+  const getVisibleContacts = () => {
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
 
-  const visibleContact = getVisibleContact();
+  const visibleContact = getVisibleContacts();
 
   const deleteContact = contactId => {
     setContacts(ps => ps.filter(contact => contact.id !== contactId));
