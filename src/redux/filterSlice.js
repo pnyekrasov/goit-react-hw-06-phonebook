@@ -5,17 +5,15 @@ export const getVisibleContacts = value => {
   };
 };
 
-export const filtersReducer = (state = {}, action) => {
+export const filtersReducer = (state = '', action) => {
   switch (action.type) {
     case 'filters/getVisibleContacts':
-      return {
-        ...state,
-        contacts: state.contacts.filter(contact =>
-          contact.name.toLowerCase().includes(action.payload.toLowerCase())
-        ),
-      };
-
+      return action.payload;
     default:
       return state;
   }
 };
+
+// return state.contacts.filter(contact =>
+//   contact.name.toLowerCase().includes(action.payload.toLowerCase())
+// );
