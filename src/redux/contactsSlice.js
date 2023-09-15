@@ -26,7 +26,7 @@ export const resetContacts = startContacts => {
   };
 };
 
-export const contactsReducer = (state = { startContacts }, action) => {
+export const contactsReducer = (state = startContacts, action) => {
   switch (action.type) {
     case 'contacts/addContact':
       return {

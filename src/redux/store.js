@@ -10,7 +10,7 @@ import { filtersReducer } from './filterSlice';
 
 const rootReducer = combineReducers({
   contacts: contactsReducer,
-  locale: filtersReducer,
+  filters: filtersReducer,
 });
 
 const enhancer = devToolsEnhancer();

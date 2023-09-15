@@ -1,45 +1,46 @@
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactsBook, ButtonReset } from './App.staled';
 import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter.1';
-import { useLocalStorage } from './hooks/useLocalStorage';
+import { Filter } from './Filter/Filter';
+import { useSelector } from 'react-redux';
+// import { useLocalStorage } from './hooks/useLocalStorage';
 import {} from './ContactList/ContactList.styled';
-
-const startContacts = [
-  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-  { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-  { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-  { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-];
+import { useDispatch } from 'react-redux';
+import { resetContacts } from 'redux/contactsSlice';
 
 export const App = () => {
-  const [contacts, setContacts] = useLocalStorage(
-    'current-contacts',
-    startContacts
-  );
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts.startContacts);
+  // const [contacts, setContacts] = useLocalStorage(
+  //   'current-contacts',
+  //   startContacts
+  // );
 
-  const addContact = newContact => {
-    contacts.find(
-      contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
-    )
-      ? alert(`${newContact.name} is already in contacts`)
-      : setContacts(ps => [...contacts, newContact]);
-  };
+  // const addContact = newContact => {
+  //   contacts.find(
+  //     contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
+  //   )
+  //     ? alert(`${newContact.name} is already in contacts`)
+  //     : setContacts(ps => [...contacts, newContact]);
+  // };
 
-  const resetContacts = () => {
-    window.confirm(
-      'Are you sure you want to return Contacts to their starting positions?'
-    ) && setContacts(startContacts);
-  };
+  // const resetContacts = () => {
+  //   window.confirm(
+  //     'Are you sure you want to return Contacts to their starting positions?'
+  //   ) && setContacts(startContacts);
+  // };
 
   return (
     <ContactsBook>
       <h1>Phonebook</h1>
-      <ContactForm onAdd={addContact} />
-
+      <ContactForm />
+      {/* <ContactForm onAdd={addContact} /> */}
       <h2>Contacts</h2>
       <Filter />
-      <ButtonReset type="button" onClick={resetContacts}>
+      <ButtonReset
+        type="button"
+        onClick={() => dispatch(resetContacts(contacts))}
+      >
         Reset
       </ButtonReset>
       <ContactList />

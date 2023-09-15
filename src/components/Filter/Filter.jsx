@@ -5,13 +5,13 @@ import { getVisibleContacts } from 'redux/filterSlice';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const nameFilter = useSelector(state => state.filters);
+  const value = useSelector(state => state.filters);
   return (
     <Label>
       Find contact by name
       <InputFilter
         type="text"
-        value={nameFilter}
+        value={value}
         onChange={evt => dispatch(getVisibleContacts(evt.target.value))}
       />
     </Label>
