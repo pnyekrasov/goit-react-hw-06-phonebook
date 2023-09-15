@@ -9,7 +9,7 @@ import {
   Button,
   StyledError,
 } from './ContactForm.staled';
-import { nanoid } from 'nanoid';
+
 import { addContact } from 'redux/contactsSlice';
 
 const schema = Yup.object().shape({
@@ -42,7 +42,7 @@ export const ContactForm = () => {
           contact => contact.name.toLowerCase() === values.name.toLowerCase()
         )
           ? alert(`${values.name} is already in contacts`)
-          : dispatch(addContact({ ...values, id: nanoid() }));
+          : dispatch(addContact({ ...values }));
         actions.resetForm();
       }}
     >
