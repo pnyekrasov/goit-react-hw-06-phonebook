@@ -15,12 +15,14 @@ export const addContact = values => {
     },
   };
 };
+
 export const deleteContact = contactId => {
   return {
     type: 'contacts/deleteContact',
     payload: contactId,
   };
 };
+
 export const resetContacts = startContacts => {
   return {
     type: 'contacts/resetContacts',
@@ -34,7 +36,7 @@ export const contactsReducer = (state = startContacts, action) => {
       return [...state, action.payload];
 
     case 'contacts/deleteContact':
-      return state.contacts.filter(contact => contact.id !== action.payload);
+      return state.filter(contact => contact.id !== action.payload);
 
     case 'contacts/resetContacts':
       return startContacts;

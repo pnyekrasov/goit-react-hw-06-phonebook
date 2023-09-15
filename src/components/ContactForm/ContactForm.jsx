@@ -1,7 +1,7 @@
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { addContact } from 'redux/contactsSlice';
 import {
   Label,
   StyledForm,
@@ -9,8 +9,6 @@ import {
   Button,
   StyledError,
 } from './ContactForm.staled';
-
-import { addContact } from 'redux/contactsSlice';
 
 const schema = Yup.object().shape({
   name: Yup.string()
