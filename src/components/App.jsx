@@ -1,8 +1,7 @@
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactsBook, ButtonReset } from './App.staled';
 import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
-import { useState } from 'react';
+import { Filter } from './Filter/Filter.1';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import {} from './ContactList/ContactList.styled';
 
@@ -18,7 +17,6 @@ export const App = () => {
     'current-contacts',
     startContacts
   );
-  const [filter, setFilter] = useState('');
 
   const addContact = newContact => {
     contacts.find(
@@ -28,26 +26,10 @@ export const App = () => {
       : setContacts(ps => [...contacts, newContact]);
   };
 
-  const handleChangeNameFilter = newName => {
-    setFilter(newName);
-  };
-
   const resetContacts = () => {
     window.confirm(
       'Are you sure you want to return Contacts to their starting positions?'
     ) && setContacts(startContacts);
-  };
-
-  const getVisibleContacts = () => {
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
-  };
-
-  const visibleContact = getVisibleContacts();
-
-  const deleteContact = contactId => {
-    setContacts(ps => ps.filter(contact => contact.id !== contactId));
   };
 
   return (
@@ -56,11 +38,11 @@ export const App = () => {
       <ContactForm onAdd={addContact} />
 
       <h2>Contacts</h2>
-      <Filter nameFilter={filter} onChange={handleChangeNameFilter} />
+      <Filter />
       <ButtonReset type="button" onClick={resetContacts}>
         Reset
       </ButtonReset>
-      <ContactList items={visibleContact} onDelete={deleteContact} />
+      <ContactList />
     </ContactsBook>
   );
 };
