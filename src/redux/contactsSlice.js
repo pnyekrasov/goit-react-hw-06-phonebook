@@ -11,7 +11,7 @@ export const addContact = values => {
     type: 'contacts/addContact',
     payload: {
       id: nanoid(),
-      values,
+      ...values,
     },
   };
 };
@@ -37,10 +37,7 @@ export const contactsReducer = (state = startContacts, action) => {
       return state.contacts.filter(contact => contact.id !== action.payload);
 
     case 'contacts/resetContacts':
-      return {
-        ...state,
-        contacts: startContacts,
-      };
+      return startContacts;
 
     default:
       return state;
