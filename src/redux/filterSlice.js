@@ -1,15 +1,14 @@
-export const getVisibleContacts = value => {
-  return {
-    type: 'filter/getVisibleContacts',
-    payload: value,
-  };
-};
+import { createSlice } from '@reduxjs/toolkit';
 
-export const filterReducer = (state = '', action) => {
-  switch (action.type) {
-    case 'filter/getVisibleContacts':
+const filterSlice = createSlice({
+  name: 'filter',
+  initialState: '',
+  reducers: {
+    getVisibleContacts(state, action) {
       return action.payload;
-    default:
-      return state;
-  }
-};
+    },
+  },
+});
+
+export const { getVisibleContacts } = filterSlice.actions;
+export const filterReducer = filterSlice.reducer;

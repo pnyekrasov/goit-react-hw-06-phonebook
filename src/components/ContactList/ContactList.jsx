@@ -4,10 +4,9 @@ import { ContactItem } from 'components/ContactItem/ContactItem';
 import { ButtonReset, List, ListItem } from './ContactList.styled';
 
 export const ContactList = () => {
-  const dispatch = useDispatch();
-  const startContacts = useSelector(state => state.contacts.startContacts);
   const contacts = useSelector(state => state.contacts);
   const filter = useSelector(state => state.filter);
+  const dispatch = useDispatch();
 
   const getVisibleContacts = () => {
     return contacts.filter(contact =>
@@ -27,7 +26,7 @@ export const ContactList = () => {
               'Are you sure you want to return Contacts to their starting positions?'
             )
           ) {
-            dispatch(resetContacts(startContacts));
+            dispatch(resetContacts(contacts));
           }
         }}
       >
