@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { resetContacts } from 'redux/contactsSlice';
+import { selectContacts, selectFilter } from 'redux/selectors';
 import { ContactItem } from 'components/ContactItem/ContactItem';
 import { ButtonReset, List, ListItem } from './ContactList.styled';
 
 export const ContactList = () => {
-  const contacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   const getVisibleContacts = () => {
